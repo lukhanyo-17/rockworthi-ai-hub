@@ -4,7 +4,7 @@
 
 This project was developed as part of the CAPACITI AI Skill Accelerator Programme & Google AI Essentials Certification.
 
-## 🚀 Core Features
+## 🧾 Core Features
 
 * **Smart Email Generator:** Turns rough ideas into send-ready emails based on the sender's name, context, and desired tone.
 * **Meeting Notes Summarizer:** Converts raw, messy meeting notes into clean executive summaries with clear action items and owners.
@@ -16,7 +16,7 @@ This project was developed as part of the CAPACITI AI Skill Accelerator Programm
 
 ## 🌐 Live Application
 You can view the live, fully responsive application here: 
-[Insert your Live Lovable Link here]
+(https://rockworth-ai-hub.lovable.app/tools)
 ## Development
 
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
