@@ -22,7 +22,7 @@ export const Route = createFileRoute("/tools")({
   }),
   component: Tools,
   validateSearch: (search: Record<string, unknown>): { tool?: TabId } => {
-    const tool = search.tool;
+    const tool = search["tool"];
     return typeof tool === "string" && ["email", "notes", "planner"].includes(tool)
       ? { tool: tool as TabId }
       : {};
