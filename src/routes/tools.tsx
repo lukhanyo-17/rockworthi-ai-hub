@@ -21,6 +21,12 @@ export const Route = createFileRoute("/tools")({
     ],
   }),
   component: Tools,
+  validateSearch: (search: Record<string, unknown>): { tool?: TabId } => {
+    const tool = search["tool"];
+    return typeof tool === "string" && ["email", "notes", "planner"].includes(tool)
+      ? { tool: tool as TabId }
+      : {};
+  },
 });
 
 const TABS = [
@@ -32,7 +38,8 @@ const TABS = [
 type TabId = (typeof TABS)[number]["id"];
 
 function Tools() {
-  const [active, setActive] = useState<TabId>("email");
+  const { tool } = Route.useSearch();
+  const [active, setActive] = useState<TabId>(tool ?? "email");
 
   return (
     <div className="mx-auto max-w-5xl px-5 py-12 sm:py-16">
