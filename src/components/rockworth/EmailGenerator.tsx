@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { emailMocks, type Tone } from "./mock-data";
-import { FieldLabel, LoadingState, OrangeButton, OutputCard, Panel, Spinner } from "./ui";
+import { FieldLabel, LoadingState, AccentButton, OutputCard, Panel, Spinner } from "./ui";
 
 export function EmailGenerator() {
   const [topic, setTopic] = useState("");
@@ -47,7 +47,7 @@ export function EmailGenerator() {
       </label>
 
       <div className="mt-6">
-        <OrangeButton onClick={generate} disabled={loading}>
+        <AccentButton onClick={generate} disabled={loading}>
           {loading ? (
             <>
               <Spinner /> Generating…
@@ -55,7 +55,7 @@ export function EmailGenerator() {
           ) : (
             "Generate Email"
           )}
-        </OrangeButton>
+        </AccentButton>
       </div>
 
       {loading ? <LoadingState label="Drafting your email" /> : null}

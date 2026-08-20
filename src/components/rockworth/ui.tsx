@@ -28,7 +28,7 @@ export function FieldLabel({ children }: { children: ReactNode }) {
   );
 }
 
-export function OrangeButton({
+export function AccentButton({
   children,
   onClick,
   disabled,
@@ -46,7 +46,7 @@ export function OrangeButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`btn-orange inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-display text-sm font-extrabold uppercase tracking-[0.12em] disabled:cursor-not-allowed ${className}`}
+      className={`btn-accent inline-flex items-center justify-center gap-2 rounded-md px-6 py-3 font-display text-sm font-extrabold uppercase tracking-[0.12em] disabled:cursor-not-allowed ${className}`}
     >
       {children}
     </button>

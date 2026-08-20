@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { scheduleBuckets } from "./mock-data";
-import { FieldLabel, LoadingState, OrangeButton, OutputCard, Panel, Spinner } from "./ui";
+import { FieldLabel, LoadingState, AccentButton, OutputCard, Panel, Spinner } from "./ui";
 
 export function TaskPlanner() {
   const [draft, setDraft] = useState("");
@@ -36,7 +36,7 @@ export function TaskPlanner() {
   return (
     <Panel
       title="AI Task Planner"
-      subtitle="Capture the week's work, then let RockWorth sequence it by priority."
+      subtitle="Capture the week's work, then let RockWorthi sequence it by priority."
     >
       <FieldLabel>Add a task</FieldLabel>
       <div className="flex flex-col gap-3 sm:flex-row">
@@ -82,7 +82,7 @@ export function TaskPlanner() {
       )}
 
       <div className="mt-6">
-        <OrangeButton onClick={generate} disabled={loading}>
+        <AccentButton onClick={generate} disabled={loading}>
           {loading ? (
             <>
               <Spinner /> Building schedule…
@@ -90,7 +90,7 @@ export function TaskPlanner() {
           ) : (
             "Generate Weekly Schedule"
           )}
-        </OrangeButton>
+        </AccentButton>
       </div>
 
       {loading ? <LoadingState label="Ranking tasks by impact and effort" /> : null}
