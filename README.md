@@ -16,7 +16,7 @@ This project was developed as part of the CAPACITI AI Skill Accelerator Programm
 
 ## 🌐 Live Application
 You can view the live, fully responsive application here: 
-(https://rockworth-ai-hub.lovable.app/tools)
+(https://rockworth-ai-hub.lovable.app/)
 ## Development
 
 Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
