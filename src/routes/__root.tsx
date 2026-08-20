@@ -10,6 +10,7 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { Logo } from "../components/rockworth/Logo";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
 function NotFoundComponent() {
@@ -77,17 +78,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "RockWorth — AI Workplace Productivity Hub" },
+      { title: "RockWorthi — Elegant AI Hub for Professionals" },
       {
         name: "description",
         content:
-          "RockWorth is an AI workplace productivity hub: draft emails, summarize meeting notes, and plan your week.",
+          "RockWorthi is the elegant AI hub for modern professionals: writing, recall, and planning in seconds.",
       },
-      { name: "author", content: "RockWorth" },
-      { property: "og:title", content: "RockWorth — AI Workplace Productivity Hub" },
+      { name: "author", content: "RockWorthi" },
+      { property: "og:title", content: "RockWorthi — Elegant AI Hub for Professionals" },
       {
         property: "og:description",
-        content: "Draft emails, summarize meetings, and plan your week with RockWorth.",
+        content: "Streamline your writing, recall, and planning with RockWorthi.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -98,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Italianno&family=Inter:wght@400;500;600;700&display=swap",
       },
       {
         rel: "stylesheet",
@@ -127,13 +128,55 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+const NAV = [
+  { to: "/", label: "Home" },
+  { to: "/tools", label: "AI Tools" },
+  { to: "/admin", label: "Admin" },
+] as const;
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <div className="flex min-h-screen flex-col">
+        <header className="sticky top-0 z-30 border-b border-border bg-background/85 backdrop-blur">
+          <div className="mx-auto flex max-w-6xl flex-col gap-3 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+            <Logo />
+            <nav className="flex items-center gap-1 text-sm">
+              {NAV.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  activeOptions={{ exact: item.to === "/" }}
+                  className="rounded-full px-4 py-2 font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                  activeProps={{ className: "bg-secondary text-foreground" }}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+        </header>
+
+        {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+        <main className="flex-1">
+          <Outlet />
+        </main>
+
+        <footer className="border-t border-border bg-card">
+          <div className="mx-auto max-w-6xl px-5 py-8 text-sm text-muted-foreground">
+            <p className="font-display text-base text-foreground">RockWorthi</p>
+            <p className="mt-2">
+              Need support? Reach out to the RockWorthi Admin Team at{" "}
+              <a className="text-primary hover:underline" href="mailto:hello@rockworthi.co.za">
+                hello@rockworthi.co.za
+              </a>{" "}
+              | <a className="text-primary hover:underline" href="tel:+27825550199">+27 82 555 0199</a>
+            </p>
+          </div>
+        </footer>
+      </div>
     </QueryClientProvider>
   );
 }
