@@ -1,10 +1,10 @@
-# RockWorth AI Hub
+# RockWorthi AI Hub
 
 ask: Build a fully functional, mobile-responsive "AI Workplace Productivity Hub" web application named RockWorth.
 
 Brand Identity & UI/UX Design:
 
-App Name: RockWorth (One word, exact capitalization). The logo/header text must use a heavily bolded, very distinct font (like Montserrat Black, Impact, or similar) so it stands out immediately.
+App Name: RockWorthi (One word, exact capitalization). The logo/header text must use a heavily bolded, very distinct font (like Montserrat Black, Impact, or similar) so it stands out immediately.
 
 Vibe: A grungy, serious business, premium corporate tool. Dark mode aesthetic.
 
@@ -48,7 +48,7 @@ Crucial Requirement: You MUST simulate the AI processing using realistic loading
 
 This project was built with [Lovable](https://lovable.dev).
 
-**Live app**: https://rockworth-ai-hub.lovable.app
+**Live app**: https://rockworthi-ai-hub.lovable.app
 
 ## Build with Lovable
 
