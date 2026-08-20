@@ -22,21 +22,24 @@ export const Route = createFileRoute("/")({
 
 const FEATURES = [
   {
+    id: "email",
     icon: PenLine,
     title: "Smart Email Generator",
     copy: "Turn a rough idea into a send-ready email in the tone the moment calls for.",
   },
   {
+    id: "notes",
     icon: ListChecks,
     title: "Meeting Notes Summarizer",
     copy: "Messy notes become an executive summary with owners, decisions and deadlines.",
   },
   {
+    id: "planner",
     icon: CalendarDays,
     title: "AI Task Planner",
     copy: "Capture the week's work and get it sequenced by priority and energy.",
   },
-];
+] as const;
 
 function Home() {
   return (
@@ -66,15 +69,24 @@ function Home() {
       </section>
 
       <section className="mx-auto max-w-6xl px-5 pb-20">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {FEATURES.map(({ icon: Icon, title, copy }) => (
-            <article key={title} className="card-soft rounded-2xl p-7">
-              <span className="grid size-11 place-items-center rounded-full bg-secondary text-primary">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map(({ id, icon: Icon, title, copy }, i) => (
+            <Link
+              key={id}
+              to="/tools"
+              search={{ tool: id }}
+              aria-label={`Open ${title}`}
+              style={{ animationDelay: `${i * 110}ms` }}
+              className="card-soft group animate-fade-up block w-full rounded-2xl p-7 text-left transition-all duration-300 hover:-translate-y-1.5 hover:shadow-[0_18px_40px_-18px_oklch(0.45_0.03_250_/_0.45)] focus-visible:-translate-y-1.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring active:-translate-y-1"
+            >
+              <span className="grid size-11 place-items-center rounded-full bg-secondary text-muted-foreground transition-colors duration-300 group-hover:bg-accent group-hover:text-primary group-focus-visible:text-primary">
                 <Icon className="size-5" />
               </span>
-              <h2 className="mt-5 font-display text-xl font-semibold">{title}</h2>
+              <h2 className="mt-5 font-display text-xl font-semibold transition-colors duration-300 group-hover:text-primary">
+                {title}
+              </h2>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{copy}</p>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
