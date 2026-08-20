@@ -1,111 +1,83 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { EmailGenerator } from "@/components/rockworth/EmailGenerator";
-import { NotesSummarizer } from "@/components/rockworth/NotesSummarizer";
-import { TaskPlanner } from "@/components/rockworth/TaskPlanner";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { PenLine, ListChecks, CalendarDays } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "RockWorth — AI Workplace Productivity Hub" },
+      { title: "RockWorthi — Elegant AI Hub for Modern Professionals" },
       {
         name: "description",
         content:
-          "RockWorth drafts smart emails, summarizes meeting notes, and builds your weekly schedule — one dark, focused workspace.",
+          "RockWorthi streamlines your writing, recall, and planning in seconds with a calm, elegant AI workspace.",
       },
-      { property: "og:title", content: "RockWorth — AI Workplace Productivity Hub" },
+      { property: "og:title", content: "RockWorthi — Elegant AI Hub for Modern Professionals" },
       {
         property: "og:description",
-        content:
-          "Smart Email Generator, Meeting Notes Summarizer, and AI Task Planner in one premium workspace.",
+        content: "Streamline your writing, recall, and planning in seconds.",
       },
     ],
   }),
-  component: Index,
+  component: Home,
 });
 
-const TOOLS = [
-  { id: "email", label: "Email Generator", tag: "01" },
-  { id: "notes", label: "Notes Summarizer", tag: "02" },
-  { id: "planner", label: "Task Planner", tag: "03" },
-] as const;
+const FEATURES = [
+  {
+    icon: PenLine,
+    title: "Smart Email Generator",
+    copy: "Turn a rough idea into a send-ready email in the tone the moment calls for.",
+  },
+  {
+    icon: ListChecks,
+    title: "Meeting Notes Summarizer",
+    copy: "Messy notes become an executive summary with owners, decisions and deadlines.",
+  },
+  {
+    icon: CalendarDays,
+    title: "AI Task Planner",
+    copy: "Capture the week's work and get it sequenced by priority and energy.",
+  },
+];
 
-type ToolId = (typeof TOOLS)[number]["id"];
-
-function Index() {
-  const [active, setActive] = useState<ToolId>("email");
-
+function Home() {
   return (
-    <div className="min-h-screen lg:flex">
-      <aside className="surface-grit border-b border-sidebar-border bg-sidebar lg:min-h-screen lg:w-72 lg:shrink-0 lg:border-b-0 lg:border-r">
-        <div className="flex items-center gap-3 px-5 py-5 lg:px-6 lg:py-7">
-          <span className="grid size-10 place-items-center rounded-md btn-orange font-display text-lg font-black">
-            R
-          </span>
-          <div>
-            <h1 className="font-display text-2xl font-black uppercase leading-none tracking-tight text-foreground">
-              Rock<span className="text-gradient-orange">Worth</span>
-            </h1>
-            <p className="mt-1 text-[10px] uppercase tracking-[0.28em] text-muted-foreground">
-              AI Productivity Hub
-            </p>
-          </div>
-        </div>
-
-        <nav className="flex gap-2 overflow-x-auto px-4 pb-4 lg:flex-col lg:overflow-visible lg:px-4 lg:pb-6">
-          {TOOLS.map((tool) => {
-            const isActive = tool.id === active;
-            return (
-              <button
-                key={tool.id}
-                type="button"
-                onClick={() => setActive(tool.id)}
-                aria-current={isActive ? "page" : undefined}
-                className={`flex shrink-0 items-center gap-3 rounded-md px-4 py-3 text-left font-display text-xs font-extrabold uppercase tracking-[0.12em] transition-colors lg:w-full ${
-                  isActive
-                    ? "btn-orange"
-                    : "border border-transparent text-muted-foreground hover:border-border hover:bg-secondary/60 hover:text-foreground"
-                }`}
-              >
-                <span className="opacity-70">{tool.tag}</span>
-                {tool.label}
-              </button>
-            );
-          })}
-        </nav>
-
-        <div className="hidden px-6 pb-8 lg:block">
-          <div className="rounded-md border border-border bg-card/70 p-4">
-            <p className="font-display text-xs font-extrabold uppercase tracking-[0.16em] text-primary">
-              Demo mode
-            </p>
-            <p className="mt-2 text-xs leading-relaxed text-muted-foreground">
-              Outputs are simulated with realistic sample results so every flow is fully testable.
-            </p>
-          </div>
-        </div>
-      </aside>
-
-      <main className="flex-1 px-4 py-8 sm:px-8 lg:px-12">
-        <div className="mx-auto max-w-4xl">
-          <p className="font-display text-xs font-extrabold uppercase tracking-[0.3em] text-primary">
-            Workspace
+    <div>
+      <section className="mx-auto max-w-6xl px-5 py-16 sm:py-24">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-primary">
+            AI Productivity Hub
           </p>
-          <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-            Three sharp tools for the work that eats your week: writing, recall, and planning.
+          <h1 className="mt-5 font-display text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
+            RockWorthi: The elegant AI hub for{" "}
+            <span className="text-gradient-accent">modern professionals</span>
+          </h1>
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
+            Streamline your writing, recall, and planning in seconds — in one calm, uncluttered
+            workspace built for people who take their work seriously.
           </p>
-
-          <div className="mt-6">
-            {active === "email" ? <EmailGenerator /> : null}
-            {active === "notes" ? <NotesSummarizer /> : null}
-            {active === "planner" ? <TaskPlanner /> : null}
+          <div className="mt-9">
+            <Link
+              to="/tools"
+              className="btn-accent inline-flex items-center justify-center rounded-full px-9 py-4 text-sm font-semibold tracking-wide"
+            >
+              Access AI Tools
+            </Link>
           </div>
-
-          <footer className="mt-10 border-t border-border pt-5 text-xs text-muted-foreground">
-            RockWorth · Simulated AI outputs for demonstration purposes.
-          </footer>
         </div>
-      </main>
+      </section>
+
+      <section className="mx-auto max-w-6xl px-5 pb-20">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {FEATURES.map(({ icon: Icon, title, copy }) => (
+            <article key={title} className="card-soft rounded-2xl p-7">
+              <span className="grid size-11 place-items-center rounded-full bg-secondary text-primary">
+                <Icon className="size-5" />
+              </span>
+              <h2 className="mt-5 font-display text-xl font-semibold">{title}</h2>
+              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{copy}</p>
+            </article>
+          ))}
+        </div>
+      </section>
     </div>
   );
 }
