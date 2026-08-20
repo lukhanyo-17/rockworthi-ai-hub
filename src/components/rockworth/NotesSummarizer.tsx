@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { summaryMock } from "./mock-data";
-import { FieldLabel, LoadingState, OrangeButton, OutputCard, Panel, Spinner } from "./ui";
+import { FieldLabel, LoadingState, AccentButton, OutputCard, Panel, Spinner } from "./ui";
 
 export function NotesSummarizer() {
   const [notes, setNotes] = useState("");
@@ -34,7 +34,7 @@ export function NotesSummarizer() {
       </label>
 
       <div className="mt-6">
-        <OrangeButton onClick={summarize} disabled={loading}>
+        <AccentButton onClick={summarize} disabled={loading}>
           {loading ? (
             <>
               <Spinner /> Summarizing…
@@ -42,7 +42,7 @@ export function NotesSummarizer() {
           ) : (
             "Summarize Notes"
           )}
-        </OrangeButton>
+        </AccentButton>
       </div>
 
       {loading ? <LoadingState label="Extracting decisions and owners" /> : null}
@@ -62,7 +62,7 @@ export function NotesSummarizer() {
                       type="checkbox"
                       checked={!!checked[i]}
                       onChange={() => setChecked((c) => ({ ...c, [i]: !c[i] }))}
-                      className="mt-1 size-4 shrink-0 accent-[oklch(0.63_0.2_42)]"
+                      className="mt-1 size-4 shrink-0 accent-primary"
                     />
                     <span>
                       <span
