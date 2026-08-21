@@ -151,7 +151,9 @@ export function TaskPlanner() {
             </OutputCard>
           ))}
         </div>
+        </>
       ) : null}
+
     </Panel>
   );
 }
