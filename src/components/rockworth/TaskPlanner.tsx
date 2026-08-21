@@ -2,18 +2,33 @@ import { useState } from "react";
 import { scheduleBuckets } from "./mock-data";
 import { FieldLabel, LoadingState, AccentButton, OutputCard, Panel, Spinner } from "./ui";
 
+type Task = { text: string; due: string };
+
 export function TaskPlanner() {
   const [draft, setDraft] = useState("");
-  const [tasks, setTasks] = useState<string[]>([]);
+  const [due, setDue] = useState("");
+  const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(false);
   const [schedule, setSchedule] = useState<{ title: string; window: string; items: string[] }[]>([]);
 
   const addTask = () => {
     const t = draft.trim();
     if (!t) return;
-    setTasks((prev) => [...prev, t]);
+    setTasks((prev) => [...prev, { text: t, due }]);
     setDraft("");
+    setDue("");
   };
+
+  const formatDue = (value: string) =>
+    value
+      ? new Date(value).toLocaleString(undefined, {
+          weekday: "short",
+          day: "numeric",
+          month: "short",
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      : "No deadline set";
 
   const generate = () => {
     setLoading(true);
@@ -21,7 +36,9 @@ export function TaskPlanner() {
     setTimeout(() => {
       setSchedule(
         scheduleBuckets.map((bucket, i) => {
-          const owned = tasks.filter((_, idx) => idx % 3 === i);
+          const owned = tasks
+            .filter((_, idx) => idx % 3 === i)
+            .map((t) => `${t.text} — due ${formatDue(t.due)}`);
           return {
             title: bucket.title,
             window: bucket.window,
@@ -47,6 +64,13 @@ export function TaskPlanner() {
           placeholder="e.g. Rewrite the Q3 client timeline note"
           className="w-full rounded-md border border-input bg-background/60 p-3 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/40"
         />
+        <input
+          type="datetime-local"
+          value={due}
+          onChange={(e) => setDue(e.target.value)}
+          aria-label="Task date and time"
+          className="shrink-0 rounded-md border border-input bg-background/60 p-3 text-sm text-foreground outline-none focus:border-primary focus:ring-2 focus:ring-ring/40 sm:w-56"
+        />
         <button
           type="button"
           onClick={addTask}
@@ -60,13 +84,16 @@ export function TaskPlanner() {
         <ul className="mt-4 flex flex-wrap gap-2">
           {tasks.map((t, i) => (
             <li
-              key={`${t}-${i}`}
+              key={`${t.text}-${i}`}
               className="flex items-center gap-2 rounded-full border border-border bg-secondary/60 px-3 py-1.5 text-xs text-foreground"
             >
-              {t}
+              <span>
+                {t.text}
+                <span className="ml-2 text-muted-foreground">{formatDue(t.due)}</span>
+              </span>
               <button
                 type="button"
-                aria-label={`Remove ${t}`}
+                aria-label={`Remove ${t.text}`}
                 onClick={() => setTasks((prev) => prev.filter((_, idx) => idx !== i))}
                 className="text-muted-foreground transition-colors hover:text-primary"
               >
@@ -77,9 +104,10 @@ export function TaskPlanner() {
         </ul>
       ) : (
         <p className="mt-4 text-xs text-muted-foreground">
-          No tasks yet — add a few, or generate a sample week.
+          No tasks yet — add a few with dates, or generate a sample week.
         </p>
       )}
+
 
       <div className="mt-6">
         <AccentButton onClick={generate} disabled={loading}>
