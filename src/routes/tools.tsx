@@ -3,6 +3,8 @@ import { useState } from "react";
 import { EmailGenerator } from "@/components/rockworth/EmailGenerator";
 import { NotesSummarizer } from "@/components/rockworth/NotesSummarizer";
 import { TaskPlanner } from "@/components/rockworth/TaskPlanner";
+import { ResearchAssistant } from "@/components/rockworth/ResearchAssistant";
+import { Chatbot } from "@/components/rockworth/Chatbot";
 
 export const Route = createFileRoute("/tools")({
   head: () => ({
@@ -11,19 +13,21 @@ export const Route = createFileRoute("/tools")({
       {
         name: "description",
         content:
-          "Draft emails, summarize meeting notes, and plan your week with the RockWorthi AI tool suite.",
+          "Draft emails, summarize meeting notes, research topics, chat with the workplace assistant, and plan your week with RockWorthi.",
       },
       { property: "og:title", content: "AI Tools — RockWorthi" },
       {
         property: "og:description",
-        content: "Smart Email Generator, Meeting Notes Summarizer and AI Task Planner.",
+        content:
+          "Email Generator, Notes Summarizer, Task Planner, Research Assistant and Workplace Chatbot.",
       },
     ],
   }),
   component: Tools,
   validateSearch: (search: Record<string, unknown>): { tool?: TabId } => {
     const tool = search["tool"];
-    return typeof tool === "string" && ["email", "notes", "planner"].includes(tool)
+    return typeof tool === "string" &&
+      ["email", "notes", "planner", "research", "chat"].includes(tool)
       ? { tool: tool as TabId }
       : {};
   },
@@ -33,6 +37,8 @@ const TABS = [
   { id: "email", label: "Email Generator" },
   { id: "notes", label: "Notes Summarizer" },
   { id: "planner", label: "Task Planner" },
+  { id: "research", label: "Research Assistant" },
+  { id: "chat", label: "Workplace Chatbot" },
 ] as const;
 
 type TabId = (typeof TABS)[number]["id"];
@@ -45,7 +51,8 @@ function Tools() {
     <div className="mx-auto max-w-5xl px-5 py-12 sm:py-16">
       <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">AI Tools</h1>
       <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-        Three refined tools for the work that eats your week: writing, recall, and planning.
+        Five refined tools for the work that eats your week: writing, recall, research, planning and
+        quick answers.
       </p>
 
       <div
@@ -78,6 +85,8 @@ function Tools() {
         {active === "email" ? <EmailGenerator /> : null}
         {active === "notes" ? <NotesSummarizer /> : null}
         {active === "planner" ? <TaskPlanner /> : null}
+        {active === "research" ? <ResearchAssistant /> : null}
+        {active === "chat" ? <Chatbot /> : null}
       </div>
     </div>
   );
