@@ -3,6 +3,7 @@ import { emailMocks, type Tone } from "./mock-data";
 import { FieldLabel, LoadingState, AccentButton, OutputCard, Panel, Spinner } from "./ui";
 
 export function EmailGenerator() {
+  const [sender, setSender] = useState("");
   const [topic, setTopic] = useState("");
   const [tone, setTone] = useState<Tone>("Formal");
   const [loading, setLoading] = useState(false);
@@ -22,7 +23,17 @@ export function EmailGenerator() {
       title="Smart Email Generator"
       subtitle="Turn a rough idea into a send-ready email in seconds."
     >
-      <label className="block">
+      <label className="block max-w-md">
+        <FieldLabel>Sender's Name</FieldLabel>
+        <input
+          value={sender}
+          onChange={(e) => setSender(e.target.value)}
+          placeholder="e.g. Lukhanyo Manciya"
+          className="w-full rounded-md border border-input bg-background/60 p-3 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/40"
+        />
+      </label>
+
+      <label className="mt-4 block">
         <FieldLabel>What is this email about?</FieldLabel>
         <textarea
           value={topic}
@@ -32,6 +43,7 @@ export function EmailGenerator() {
           className="w-full resize-y rounded-md border border-input bg-background/60 p-3 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-ring/40"
         />
       </label>
+
 
       <label className="mt-4 block max-w-xs">
         <FieldLabel>Select Tone</FieldLabel>
