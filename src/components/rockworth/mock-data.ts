@@ -15,7 +15,7 @@ Thank you for your continued collaboration.
 
 Kind regards,
 Lukhanyo Manciya
-Delivery Lead, RockWorth`,
+Delivery Lead, RockWorthi`,
   },
   Friendly: {
     subject: "Quick update on the Q3 timeline 🙌",
@@ -44,7 +44,7 @@ I'd like to confirm this by Friday so the team can re-sequence cleanly. Can I co
 
 Best,
 Lukhanyo Manciya
-Delivery Lead, RockWorth`,
+Delivery Lead, RockWorthi`,
   },
 };
 
