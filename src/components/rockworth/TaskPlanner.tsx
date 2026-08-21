@@ -121,10 +121,20 @@ export function TaskPlanner() {
         </AccentButton>
       </div>
 
-      {loading ? <LoadingState label="Ranking tasks by impact and effort" /> : null}
+      {loading ? <LoadingState label="Ranking tasks by severity and deadline" /> : null}
 
       {schedule.length ? (
+        <>
+        <OutputCard title="How this week was prioritised">
+          <p className="text-sm leading-relaxed text-foreground">
+            Tasks were ranked first by severity — client-visible and blocking work outranks internal
+            admin — and then by deadline proximity, with anything due in the next 24 hours pulled
+            into the morning deep-focus block. Lower-severity items with distant deadlines are
+            batched together to protect your focus time.
+          </p>
+        </OutputCard>
         <div className="grid gap-4 lg:grid-cols-3">
+
           {schedule.map((bucket) => (
             <OutputCard key={bucket.title} title={bucket.title}>
               <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">
