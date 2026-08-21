@@ -83,3 +83,24 @@ export const scheduleBuckets = [
     fallback: ["Archive Q2 retro documents", "Refresh the team onboarding checklist"],
   },
 ];
+export const researchMock = {
+  takeaways: [
+    "Mid-market adoption of AI writing tools grew 38% year-on-year, led by client-facing teams rather than engineering.",
+    "Buyers consistently rank output trustworthiness above raw speed; editable drafts outperform one-shot generation.",
+    "Cost pressure is shifting spend from headcount to tooling, with an average 14-month payback expectation.",
+    "Regional data-residency requirements are now a top-three procurement blocker in South Africa and the EU.",
+  ],
+  recommendations: [
+    "Lead positioning with reviewable, human-in-the-loop drafts rather than full automation claims.",
+    "Package a 90-day pilot with measurable hours-saved reporting to shorten the procurement cycle.",
+    "Publish a clear data-handling note early in the sales motion to clear compliance review upfront.",
+    "Bundle the planner and summarizer as a single workflow story — buyers purchase outcomes, not features.",
+  ],
+};
+
+export const chatbotReplies = [
+  "Here's how I'd approach it: start by naming the outcome you want, then work backwards to the two or three decisions that actually control it. Everything else is noise you can schedule for later.",
+  "Good question. For internal comms like this, keep it to three short paragraphs — context, the ask, and the deadline. I can draft it in the Email Generator if you'd like a starting point.",
+  "Based on typical workplace policy, I'd log the request in writing, confirm the approver, and set a follow-up reminder 48 hours ahead of the deadline so nothing slips.",
+  "I'd prioritise by severity first, then deadline proximity. Anything client-visible goes into your morning deep-focus block; internal admin can be batched into one afternoon session.",
+];
